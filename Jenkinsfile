@@ -6,20 +6,20 @@ node {
   checkout scm
 
   stage 'Build image'
-  sh("echo `imageTag: ${imageTag}`")
+  sh("echo `${imageTag}`")
 
   stage "Deploy Application"
   switch (env.BRANCH_NAME) {
     // Roll out to canary environment
     case "canary":
         // Change deployed image in canary to the one we just built
-        sh("echo `feSvcName: ${feSvcName}")
+        sh("echo `${feSvcName}")
         break
 
     // Roll out to production
     case "master":
         // Change deployed image in canary to the one we just built
-	sh("echo `feSvcName: ${feSvcName}")
+	sh("echo `${feSvcName}")
         break
   }
 }
